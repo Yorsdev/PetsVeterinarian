@@ -3,13 +3,17 @@ import { CreatorPetPostService } from './services/creator-pet-post.service';
 import { FinderPetPostService } from './services/finder-pet-post.service';
 import { ApprovePetPostService } from './services/approve-pet-post.service';
 import { RejectPetPostService } from './services/reject-pet-post.service';
+import { UpdaterPetPostService } from './services/updater-pet-post.service';
+import { DeletePetPostService } from './services/delete-pet-post.service';
 
 export class PetPostController {
   constructor(
     private readonly creatorPetPostService: CreatorPetPostService,
     private readonly finderPetPostService: FinderPetPostService,
     private readonly approvePetPostService: ApprovePetPostService,
-    private readonly rejectPetPostService: RejectPetPostService
+    private readonly rejectPetPostService: RejectPetPostService,
+    private readonly updaterPetPostService: UpdaterPetPostService,
+    private readonly deleterPetPostService: DeletePetPostService
   ) {}
 
   create = (req: Request, res: Response) => {
@@ -55,6 +59,27 @@ export class PetPostController {
     this.rejectPetPostService
       .execute(id)
       .then((petPost) => res.status(200).json(petPost))
+      .catch((error) =>
+        res.status(500).json({ message: 'Internal Server Error' })
+      );
+  };
+
+  updateOne = (req: Request, res: Response) => {
+    const { id } = req.params;
+    this.updaterPetPostService
+      .execute(id, req.body)
+      .then((petPost) => res.status(200).json(petPost))
+      .catch((error) =>
+        res.status(500).json({ message: 'Internal Server Error' })
+      );
+  };
+
+  deleteOne = (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    this.deleterPetPostService
+      .execute(id)
+      .then(() => res.status(204).send())
       .catch((error) =>
         res.status(500).json({ message: 'Internal Server Error' })
       );

@@ -6,6 +6,6 @@ export class DeleterUserService {
 
     if (!user) throw new Error('User not found');
 
-    await user.remove(); // Active Record style
+    await user.remove();
   }
 }
