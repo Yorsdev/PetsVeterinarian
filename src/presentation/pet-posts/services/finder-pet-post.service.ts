@@ -1,7 +1,6 @@
 import { PetPost, PetPostStatus } from '../../../data';
 
 export class FinderPetPostService {
-  //FALTA CREAR ESTO
   async executeByFindAll() {
     return await PetPost.find({
       where: {

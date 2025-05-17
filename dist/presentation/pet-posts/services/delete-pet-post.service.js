@@ -9,16 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleterUserService = void 0;
+exports.DeletePetPostService = void 0;
 const data_1 = require("../../../data");
-class DeleterUserService {
+class DeletePetPostService {
     execute(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield data_1.User.findOneBy({ id });
-            if (!user)
-                throw new Error('User not found');
-            yield user.remove();
+            const pet = yield data_1.PetPost.findOneBy({ id });
+            if (!pet)
+                throw new Error('Pet post not found');
+            yield pet.remove();
         });
     }
 }
-exports.DeleterUserService = DeleterUserService;
+exports.DeletePetPostService = DeletePetPostService;

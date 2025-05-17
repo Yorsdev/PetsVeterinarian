@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FinderPetPostService = void 0;
 const data_1 = require("../../../data");
 class FinderPetPostService {
-    //FALTA CREAR ESTO
     executeByFindAll() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield data_1.PetPost.find({

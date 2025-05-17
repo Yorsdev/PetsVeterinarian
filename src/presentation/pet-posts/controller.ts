@@ -59,9 +59,7 @@ export class PetPostController {
     this.rejectPetPostService
       .execute(id)
       .then((petPost) => res.status(200).json(petPost))
-      .catch((error) =>
-        res.status(500).json({ message: 'Internal Server Error' })
-      );
+      .catch((error) => res.status(400).json({ message: error.message }));
   };
 
   updateOne = (req: Request, res: Response) => {

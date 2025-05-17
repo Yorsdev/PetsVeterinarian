@@ -14,6 +14,14 @@ const data_1 = require("../../../data");
 class CreatorPetPostService {
     execute(data) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!data.petName ||
+                typeof data.petName !== 'string' ||
+                !data.description ||
+                typeof data.description !== 'string' ||
+                !data.image_url ||
+                typeof data.image_url !== 'string') {
+                throw new Error('petName, description, and image_url are required and must be strings');
+            }
             const petPost = new data_1.PetPost();
             petPost.petName = data.petName.trim().toLowerCase();
             petPost.description = data.description.trim().toLowerCase();
@@ -22,6 +30,7 @@ class CreatorPetPostService {
                 return yield petPost.save();
             }
             catch (error) {
+                console.error('Error creating pet post:', error);
                 throw new Error('Error creating pet post');
             }
         });
